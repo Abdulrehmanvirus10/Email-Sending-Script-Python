@@ -1,6 +1,12 @@
 import smtplib
 import email.message
+import getpass
+# In many of the Cases the this Doesn't Works, So Here is How you can Make it Work for You... 
 server = smtplib.SMTP('smtp.gmail.com:587')
+''' 
+Instead Use this .
+server = smtplib.SMTP('smtp.gmail.com' , 587)
+'''
 
 from JuneContent import content
 from emaillist import emails
@@ -11,10 +17,11 @@ listofemail =  emails # List of Email id for sending emails
 msg = email.message.Message()
 msg['Subject'] = 'Codeperfectplus DataScience Newsletter'
 msg['From'] = 'youEmail@gmail.com'
-password = "your gmail app password"   # create app password in accounts/security
+password = getpass("Enter your Email Password - ")   # create app password in accounts/security
 msg.add_header('Content-Type', 'text/html')
 msg.set_payload(email_content)
 s = smtplib.SMTP('smtp.gmail.com: 587')
+s.ehlo()
 s.starttls()
 
  
